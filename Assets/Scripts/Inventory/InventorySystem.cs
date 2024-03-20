@@ -41,7 +41,7 @@ public class InventorySystem
 
         if (HasFreeSlot(out InventorySlot freeSlot))
         {
-            freeSlot.UpdateInventorySlot(item, amount);
+            freeSlot.UpdateInventorySlot(item, item.ID, amount);
 
             OnInventorySlotChanged?.Invoke(freeSlot);
 

@@ -1,19 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: Abstract the deserialisation method away from this class, so it does not load from resources constantly
+
 [System.Serializable]
 public class InventorySlot
 {
-    [SerializeField] private InventoryItemData itemData;
+    [SerializeField] private int itemID;
     [SerializeField] private int stackSize;
 
-    public InventoryItemData Data => itemData;
+    public InventoryItemData Data => ItemManager.GetItem(itemID);
     public int StackSize => stackSize;
 
     public InventorySlot(InventoryItemData item, int amount)
     {
-        UpdateInventorySlot(item, amount);
+        UpdateInventorySlot(item, itemID, amount);
     }
 
     public InventorySlot()
@@ -23,33 +26,33 @@ public class InventorySlot
 
     public void ClearSlot()
     {
-        UpdateInventorySlot(null, -1);
+        UpdateInventorySlot(null, -1, -1);
     }
 
     public void AssignItem(InventorySlot slot)
     {
-        if (itemData == slot.Data)
+        if (Data == slot.Data)
             AddToStack(slot.stackSize);
         else
-            UpdateInventorySlot(slot.Data, slot.stackSize);
+            UpdateInventorySlot(slot.Data, slot.Data.ID, slot.stackSize);
     }
 
-    public void UpdateInventorySlot(InventoryItemData item, int amount)
+    public void UpdateInventorySlot(InventoryItemData item, int id, int amount)
     {
-        itemData = item;
+        itemID = id;
         stackSize = amount;
     }
 
     public bool RoomLeftInStack(int amountToAdd, out int amountRemaining)
     {
-        amountRemaining = itemData.maximumStackSize - stackSize;
+        amountRemaining = Data.maximumStackSize - stackSize;
 
         return RoomLeftInStack(amountToAdd);
     }
 
     public bool RoomLeftInStack(int amountToAdd)
     {
-        return stackSize + amountToAdd <= itemData.maximumStackSize;
+        return stackSize + amountToAdd <= Data.maximumStackSize;
     }
 
     public void AddToStack(int amount)
@@ -73,7 +76,7 @@ public class InventorySlot
 
         RemoveFromStack(halfStack);
 
-        splitStackSlot = new InventorySlot(itemData, halfStack);
+        splitStackSlot = new InventorySlot(Data, halfStack);
 
         return true;
     }
