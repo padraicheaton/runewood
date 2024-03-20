@@ -15,4 +15,5 @@ public class DevToolsWindow : ModalWindow
     }
 
     public void OnDeleteSaveDataPressed() => SaveLoad.DeleteSaveData();
+    public void OnLoadSaveBtnPressed() => SaveGameManager.TryLoadData();
 }

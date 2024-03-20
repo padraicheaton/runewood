@@ -12,4 +12,9 @@ public abstract class ConsumableItemData : UseableItemData
         // Use the item
         OnItemUsed();
     }
+
+    protected override void OnItemUsed()
+    {
+        PlayerCombat.onConsumableItemUsed?.Invoke(this);
+    }
 }

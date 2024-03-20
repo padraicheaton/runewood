@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8907a08da8d1a2f44b5f4642969ea370, type: 3}
-  m_Name: Healing Potion
+  m_Name: Mana Potion
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 88fe057d745bd9340ba70b57a91ceed4, type: 3}
+  icon: {fileID: 21300000, guid: 07034204f1ae47c428f98661a5ae84a6, type: 3}
   maximumStackSize: 5
-  resource: 0
+  resource: 1
   amount: 10

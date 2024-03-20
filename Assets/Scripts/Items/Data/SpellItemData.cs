@@ -11,6 +11,6 @@ public class SpellItemData : UseableItemData
 
     protected override void OnItemUsed()
     {
-        Debug.Log($"I cast {element} {action}!!");
+        PlayerCombat.onSpellItemUsed?.Invoke(this);
     }
 }

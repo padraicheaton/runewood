@@ -13,7 +13,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float onFootZoom;
     [SerializeField] private float uiZoom;
     [SerializeField] private float speed;
-    [SerializeField] private float deadZoneThreshold;
 
     private void Awake()
     {
@@ -28,6 +27,16 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        SaveLoad.OnLoadGame += OnSaveDataLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SaveLoad.OnLoadGame -= OnSaveDataLoaded;
+    }
+
+    private void OnSaveDataLoaded(SaveData saveData)
+    {
         transform.position = TargetDestination;
 
         transform.LookAt(player);
@@ -35,7 +44,6 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, TargetDestination) >= deadZoneThreshold)
-            transform.position = Vector3.Lerp(transform.position, TargetDestination, Time.deltaTime * speed);
+        transform.position = Vector3.Lerp(transform.position, TargetDestination, Time.deltaTime * speed);
     }
 }
