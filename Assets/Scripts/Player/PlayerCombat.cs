@@ -12,8 +12,12 @@ public class PlayerCombat : MonoBehaviour
     }
 
     [Header("References")]
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private ResourceComponent healthComponent;
     [SerializeField] private ResourceComponent manaComponent;
+
+    [Header("Visual Settings")]
+    [SerializeField] private float damageTakenKnockAmount;
 
     public static UnityAction<ConsumableItemData> onConsumableItemUsed;
     public static UnityAction<SpellItemData> onSpellItemUsed;
@@ -22,6 +26,8 @@ public class PlayerCombat : MonoBehaviour
     {
         onConsumableItemUsed += OnConsumableItemUsed;
         onSpellItemUsed += OnSpellItemUsed;
+
+        healthComponent.onResourceTakenFrom += OnDamageTaken;
     }
 
     private void OnDestroy()
@@ -61,5 +67,10 @@ public class PlayerCombat : MonoBehaviour
                 manaComponent.ReplenishResource(resourceChangingItemData.amount);
                 break;
         }
+    }
+
+    private void OnDamageTaken(float percentage)
+    {
+        playerMovement.ApplyImpulseForce((Vector3.up - transform.forward) * damageTakenKnockAmount);
     }
 }

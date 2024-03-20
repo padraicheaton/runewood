@@ -38,6 +38,12 @@ public class ResourceComponent : MonoBehaviour
 
     public void ReplenishResource(float amount)
     {
+        if (amount < 0)
+        {
+            TakeFromResource(Mathf.Abs(amount));
+            return;
+        }
+
         currentAmount += amount;
 
         if (currentAmount > maximumAmount) currentAmount = maximumAmount;

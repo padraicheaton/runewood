@@ -92,13 +92,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGrounded())
         {
-            motor.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            ApplyImpulseForce(Vector3.up * jumpForce);
 
             if (jumpDustFX.isPlaying)
                 jumpDustFX.Stop();
 
             jumpDustFX.Play();
         }
+    }
+
+    public void ApplyImpulseForce(Vector3 force)
+    {
+        motor.AddForce(force, ForceMode.Impulse);
     }
 
     private void LoadPlayerLocation(PlayerData data)
