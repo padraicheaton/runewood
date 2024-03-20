@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         sprintDustFX.gameObject.SetActive(InputProvider.SprintPressed && IsGrounded());
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics.CheckSphere(transform.position + Vector3.down * groundCheckOffset, groundCheckRadius, whatIsGround);
     }
@@ -101,8 +101,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void ApplyImpulseForce(Vector3 force)
+    public void ApplyImpulseForce(Vector3 force, bool overrideVelocity = false)
     {
+        if (overrideVelocity)
+            motor.velocity = Vector3.zero;
+
         motor.AddForce(force, ForceMode.Impulse);
     }
 

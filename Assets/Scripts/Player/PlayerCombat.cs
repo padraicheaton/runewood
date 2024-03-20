@@ -71,6 +71,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnDamageTaken(float percentage)
     {
-        playerMovement.ApplyImpulseForce((Vector3.up - transform.forward) * damageTakenKnockAmount);
+        if (playerMovement.IsGrounded())
+            playerMovement.ApplyImpulseForce((Vector3.up - transform.forward * 0.5f) * damageTakenKnockAmount, true);
     }
 }
