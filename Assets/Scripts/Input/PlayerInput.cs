@@ -64,18 +64,45 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ChangeActiveSlot"",
-                    ""type"": ""Value"",
-                    ""id"": ""e6d2edde-6906-42b7-8f57-e7b721dd0053"",
-                    ""expectedControlType"": """",
+                    ""name"": ""UseSlot1"",
+                    ""type"": ""Button"",
+                    ""id"": ""942f1544-e8a7-4753-8114-256d54781068"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""UseItem"",
+                    ""name"": ""UseSlot2"",
                     ""type"": ""Button"",
-                    ""id"": ""6ec39da9-7470-42bf-ac8a-6cd19ddf82f4"",
+                    ""id"": ""4686273f-1729-484c-af95-6599c76b7cae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseSlot3"",
+                    ""type"": ""Button"",
+                    ""id"": ""480463cd-aeb8-44dd-b72a-c4123a00ceca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseSlot4"",
+                    ""type"": ""Button"",
+                    ""id"": ""4e90d614-1953-4e2b-9c87-822ca0d18864"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseSlot5"",
+                    ""type"": ""Button"",
+                    ""id"": ""5da94232-2350-4c61-b057-fb54b2773006"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -260,90 +287,57 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Mouse Scroll"",
-                    ""id"": ""656d30a3-24a1-4874-895f-88990296d04a"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeActiveSlot"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""0c4b979e-9cba-47d1-a3cd-f3925d116ee3"",
-                    ""path"": ""<Mouse>/scroll/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeActiveSlot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""5d7597c1-8f96-4d8d-abf2-597092c1ade8"",
-                    ""path"": ""<Mouse>/scroll/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeActiveSlot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""R Stick"",
-                    ""id"": ""263097a5-e0d9-4966-855a-521714f9143a"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeActiveSlot"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""841f456e-245c-42af-a3a4-d97bad8518da"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeActiveSlot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""dd9c29df-5319-462b-8c3d-2bc3cb4e86ad"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ChangeActiveSlot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""3d99555e-6946-4b5d-a514-cdc425509143"",
+                    ""id"": ""c0a20364-a67a-42a2-8fee-86764ca7f693"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""UseItem"",
+                    ""action"": ""UseSlot1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a162af78-10a6-4089-9932-b88eea33d1cc"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""11cb138c-3a80-4360-9f6b-e8174ddcd28b"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""UseItem"",
+                    ""action"": ""UseSlot2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a824aa5-ea01-4f58-a8c8-d35d16c24689"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseSlot3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59252c85-e0bc-4fc1-a937-095c584e4378"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseSlot4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b779464e-4e39-414d-adad-1569de4b350b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseSlot5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -975,8 +969,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
         m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
         m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
-        m_OnFoot_ChangeActiveSlot = m_OnFoot.FindAction("ChangeActiveSlot", throwIfNotFound: true);
-        m_OnFoot_UseItem = m_OnFoot.FindAction("UseItem", throwIfNotFound: true);
+        m_OnFoot_UseSlot1 = m_OnFoot.FindAction("UseSlot1", throwIfNotFound: true);
+        m_OnFoot_UseSlot2 = m_OnFoot.FindAction("UseSlot2", throwIfNotFound: true);
+        m_OnFoot_UseSlot3 = m_OnFoot.FindAction("UseSlot3", throwIfNotFound: true);
+        m_OnFoot_UseSlot4 = m_OnFoot.FindAction("UseSlot4", throwIfNotFound: true);
+        m_OnFoot_UseSlot5 = m_OnFoot.FindAction("UseSlot5", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1059,8 +1056,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Sprint;
     private readonly InputAction m_OnFoot_Interact;
     private readonly InputAction m_OnFoot_Jump;
-    private readonly InputAction m_OnFoot_ChangeActiveSlot;
-    private readonly InputAction m_OnFoot_UseItem;
+    private readonly InputAction m_OnFoot_UseSlot1;
+    private readonly InputAction m_OnFoot_UseSlot2;
+    private readonly InputAction m_OnFoot_UseSlot3;
+    private readonly InputAction m_OnFoot_UseSlot4;
+    private readonly InputAction m_OnFoot_UseSlot5;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -1069,8 +1069,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
         public InputAction @Interact => m_Wrapper.m_OnFoot_Interact;
         public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
-        public InputAction @ChangeActiveSlot => m_Wrapper.m_OnFoot_ChangeActiveSlot;
-        public InputAction @UseItem => m_Wrapper.m_OnFoot_UseItem;
+        public InputAction @UseSlot1 => m_Wrapper.m_OnFoot_UseSlot1;
+        public InputAction @UseSlot2 => m_Wrapper.m_OnFoot_UseSlot2;
+        public InputAction @UseSlot3 => m_Wrapper.m_OnFoot_UseSlot3;
+        public InputAction @UseSlot4 => m_Wrapper.m_OnFoot_UseSlot4;
+        public InputAction @UseSlot5 => m_Wrapper.m_OnFoot_UseSlot5;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1092,12 +1095,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @ChangeActiveSlot.started += instance.OnChangeActiveSlot;
-            @ChangeActiveSlot.performed += instance.OnChangeActiveSlot;
-            @ChangeActiveSlot.canceled += instance.OnChangeActiveSlot;
-            @UseItem.started += instance.OnUseItem;
-            @UseItem.performed += instance.OnUseItem;
-            @UseItem.canceled += instance.OnUseItem;
+            @UseSlot1.started += instance.OnUseSlot1;
+            @UseSlot1.performed += instance.OnUseSlot1;
+            @UseSlot1.canceled += instance.OnUseSlot1;
+            @UseSlot2.started += instance.OnUseSlot2;
+            @UseSlot2.performed += instance.OnUseSlot2;
+            @UseSlot2.canceled += instance.OnUseSlot2;
+            @UseSlot3.started += instance.OnUseSlot3;
+            @UseSlot3.performed += instance.OnUseSlot3;
+            @UseSlot3.canceled += instance.OnUseSlot3;
+            @UseSlot4.started += instance.OnUseSlot4;
+            @UseSlot4.performed += instance.OnUseSlot4;
+            @UseSlot4.canceled += instance.OnUseSlot4;
+            @UseSlot5.started += instance.OnUseSlot5;
+            @UseSlot5.performed += instance.OnUseSlot5;
+            @UseSlot5.canceled += instance.OnUseSlot5;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -1114,12 +1126,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @ChangeActiveSlot.started -= instance.OnChangeActiveSlot;
-            @ChangeActiveSlot.performed -= instance.OnChangeActiveSlot;
-            @ChangeActiveSlot.canceled -= instance.OnChangeActiveSlot;
-            @UseItem.started -= instance.OnUseItem;
-            @UseItem.performed -= instance.OnUseItem;
-            @UseItem.canceled -= instance.OnUseItem;
+            @UseSlot1.started -= instance.OnUseSlot1;
+            @UseSlot1.performed -= instance.OnUseSlot1;
+            @UseSlot1.canceled -= instance.OnUseSlot1;
+            @UseSlot2.started -= instance.OnUseSlot2;
+            @UseSlot2.performed -= instance.OnUseSlot2;
+            @UseSlot2.canceled -= instance.OnUseSlot2;
+            @UseSlot3.started -= instance.OnUseSlot3;
+            @UseSlot3.performed -= instance.OnUseSlot3;
+            @UseSlot3.canceled -= instance.OnUseSlot3;
+            @UseSlot4.started -= instance.OnUseSlot4;
+            @UseSlot4.performed -= instance.OnUseSlot4;
+            @UseSlot4.canceled -= instance.OnUseSlot4;
+            @UseSlot5.started -= instance.OnUseSlot5;
+            @UseSlot5.performed -= instance.OnUseSlot5;
+            @UseSlot5.canceled -= instance.OnUseSlot5;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -1323,8 +1344,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnChangeActiveSlot(InputAction.CallbackContext context);
-        void OnUseItem(InputAction.CallbackContext context);
+        void OnUseSlot1(InputAction.CallbackContext context);
+        void OnUseSlot2(InputAction.CallbackContext context);
+        void OnUseSlot3(InputAction.CallbackContext context);
+        void OnUseSlot4(InputAction.CallbackContext context);
+        void OnUseSlot5(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

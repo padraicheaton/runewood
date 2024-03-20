@@ -23,17 +23,11 @@ public class HotbarDisplay : StaticInventoryDisplay
         InputProvider.onUseItemButtonPressed += TryUseItem;
     }
 
-    private void Update()
-    {
-        if (InputProvider.ChangeActiveSlotInput != 0)
-            ChangeActiveSlot(Mathf.RoundToInt(Mathf.Sign(InputProvider.ChangeActiveSlotInput)));
-    }
-
-    private void ChangeActiveSlot(int direction)
+    private void ChangeActiveSlot(int index)
     {
         ActiveSlotUI.SetHighlighted(false);
 
-        activeSlotIndex += direction;
+        activeSlotIndex = index;
 
         if (activeSlotIndex > maximumSlotIndex)
             activeSlotIndex = 0;
@@ -43,8 +37,10 @@ public class HotbarDisplay : StaticInventoryDisplay
         ActiveSlotUI.SetHighlighted(true);
     }
 
-    private void TryUseItem()
+    private void TryUseItem(int index)
     {
+        ChangeActiveSlot(index);
+
         if (ActiveItem == null)
             return;
 

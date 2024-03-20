@@ -75,12 +75,16 @@ public static class InputProvider
 
         onFoot.Interact.performed += ctxt => onInteractButtonPressed?.Invoke();
         onFoot.Jump.performed += ctxt => onJumpButtonPressed?.Invoke();
-        onFoot.UseItem.performed += ctxt => onUseItemButtonPressed?.Invoke();
+
+        onFoot.UseSlot1.performed += ctxt => onUseItemButtonPressed?.Invoke(0);
+        onFoot.UseSlot2.performed += ctxt => onUseItemButtonPressed?.Invoke(1);
+        onFoot.UseSlot3.performed += ctxt => onUseItemButtonPressed?.Invoke(2);
+        onFoot.UseSlot4.performed += ctxt => onUseItemButtonPressed?.Invoke(3);
+        onFoot.UseSlot5.performed += ctxt => onUseItemButtonPressed?.Invoke(4);
     }
 
     // Public Methods
     public static Vector2 MovementInput => onFoot.Movement.ReadValue<Vector2>();
-    public static float ChangeActiveSlotInput => onFoot.ChangeActiveSlot.ReadValue<float>();
     public static bool SprintPressed => onFoot.Sprint.IsPressed();
     public static bool SplitItemPressed => uiActions.SplitItem.IsPressed();
 
@@ -89,5 +93,5 @@ public static class InputProvider
     public static UnityAction onExitMenuButtonPressed;
     public static UnityAction onInteractButtonPressed;
     public static UnityAction onJumpButtonPressed;
-    public static UnityAction onUseItemButtonPressed;
+    public static UnityAction<int> onUseItemButtonPressed;
 }
