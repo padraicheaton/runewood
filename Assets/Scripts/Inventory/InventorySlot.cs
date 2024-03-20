@@ -8,15 +8,21 @@ using UnityEngine;
 [System.Serializable]
 public class InventorySlot
 {
+    [Header("General Data")]
     [SerializeField] private int itemID;
     [SerializeField] private int stackSize;
 
     public InventoryItemData Data => ItemManager.GetItem(itemID);
     public int StackSize => stackSize;
 
-    public InventorySlot(InventoryItemData item, int amount)
+    // Spell Specific Data
+    [Header("Spell Specific Data")]
+    [SerializeField] private SpellComponentData.Element element;
+    [SerializeField] private List<SpellComponentData.Action> actions;
+
+    public InventorySlot(int itemID, int amount)
     {
-        UpdateInventorySlot(item, itemID, amount);
+        UpdateInventorySlot(itemID, amount);
     }
 
     public InventorySlot()
@@ -26,7 +32,7 @@ public class InventorySlot
 
     public void ClearSlot()
     {
-        UpdateInventorySlot(null, -1, -1);
+        UpdateInventorySlot(-1, -1);
     }
 
     public void AssignItem(InventorySlot slot)
@@ -34,13 +40,36 @@ public class InventorySlot
         if (Data == slot.Data)
             AddToStack(slot.stackSize);
         else
-            UpdateInventorySlot(slot.Data, slot.Data.ID, slot.stackSize);
+            UpdateInventorySlot(slot.Data.ID, slot.stackSize);
     }
 
-    public void UpdateInventorySlot(InventoryItemData item, int id, int amount)
+    public void UpdateInventorySlot(int id, int amount)
     {
         itemID = id;
         stackSize = amount;
+
+        // Save data if containing spell
+        if (itemID != -1 && Data.GetType() == typeof(SpellItemData))
+        {
+            SpellItemData spellItemData = Data as SpellItemData;
+
+            // If this slot has already loaded in elements and actions, apply them to this spell
+            if (element != SpellComponentData.Element.Null && actions != null)
+            {
+                spellItemData.element = element;
+                spellItemData.actions = actions;
+            }
+            else
+            {
+                element = (Data as SpellItemData).element;
+                actions = (Data as SpellItemData).actions;
+            }
+        }
+        else
+        {
+            element = SpellComponentData.Element.Null;
+            actions = null;
+        }
     }
 
     public bool RoomLeftInStack(int amountToAdd, out int amountRemaining)
@@ -76,7 +105,7 @@ public class InventorySlot
 
         RemoveFromStack(halfStack);
 
-        splitStackSlot = new InventorySlot(Data, halfStack);
+        splitStackSlot = new InventorySlot(itemID, halfStack);
 
         return true;
     }

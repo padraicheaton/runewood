@@ -10,10 +10,13 @@ public class SaveData
 
     public InventorySaveData playerInventory;
 
+    public CraftedSpellData craftedSpellData;
+
     public SaveData()
     {
         chestDictionary = new SerializableInventoryDictionary();
         playerData = new PlayerData();
         playerInventory = new InventorySaveData();
+        craftedSpellData = new CraftedSpellData();
     }
 }

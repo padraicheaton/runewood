@@ -7,7 +7,7 @@ public class SpellItemData : UseableItemData
 {
     [Header("Spell Settings")]
     public SpellComponentData.Element element;
-    public SpellComponentData.Action action;
+    public List<SpellComponentData.Action> actions;
 
     protected override void OnItemUsed()
     {

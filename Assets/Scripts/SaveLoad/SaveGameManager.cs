@@ -9,6 +9,8 @@ public class SaveGameManager : MonoBehaviour
 {
     public static SaveData CurrentSaveData;
 
+    public static UnityAction<SaveData> OnGameSuccessfullyLoaded;
+
     private void Awake()
     {
         CurrentSaveData = new SaveData();
@@ -31,6 +33,11 @@ public class SaveGameManager : MonoBehaviour
     private static void LoadData(SaveData _data)
     {
         CurrentSaveData = _data;
+
+        // Refresh the item database
+        ItemManager.GetDatabase().SetItemIDs();
+
+        OnGameSuccessfullyLoaded?.Invoke(CurrentSaveData);
     }
 
     public static void TryLoadData()

@@ -16,7 +16,7 @@ public abstract class InventoryHolder : MonoBehaviour
 
     protected virtual void Awake()
     {
-        SaveLoad.OnLoadGame += LoadInventory;
+        SaveGameManager.OnGameSuccessfullyLoaded += LoadInventory;
 
         inventorySystem = new InventorySystem(inventorySize);
     }

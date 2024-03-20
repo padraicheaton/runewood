@@ -11,13 +11,18 @@ public class ItemGenerator : MonoBehaviour, IInteractable
 
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
 
-    public void Interact(Interactor interactor, out bool interactionSuccessful)
+    public virtual void Interact(Interactor interactor, out bool interactionSuccessful)
+    {
+        GenerateItem(item);
+
+        interactionSuccessful = true;
+    }
+
+    protected void GenerateItem(InventoryItemData itemToGenerate)
     {
         ItemPickup createdPickup = Instantiate(itemPickupPrefab, transform.position + Vector3.back, Quaternion.identity);
 
-        createdPickup.Init(item);
-
-        interactionSuccessful = true;
+        createdPickup.Init(itemToGenerate);
     }
 
     public void EndInteraction()

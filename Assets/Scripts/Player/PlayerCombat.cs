@@ -38,7 +38,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnSpellItemUsed(SpellItemData spell)
     {
-        Debug.Log($"Should cast {spell.element} {spell.action}");
+        Debug.Log($"Should cast {spell.element} {spell.actions}");
     }
 
     private void OnConsumableItemUsed(ConsumableItemData consumableItemData)

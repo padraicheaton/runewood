@@ -17,6 +17,10 @@ public class Database : ScriptableObject
         List<InventoryItemData> foundItems = Resources.LoadAll<InventoryItemData>("Items")
             .OrderBy(item => item.ID).ToList();
 
+        // Include any crafted spells
+        foundItems.AddRange(SaveGameManager.CurrentSaveData.craftedSpellData.GetAllSpellItems());
+        foundItems.OrderBy(item => item.ID);
+
         // Triage them into different lists to be edited where necessary
         List<InventoryItemData> hasIDInRange = foundItems.Where(item => item.ID != -1 && item.ID < foundItems.Count)
             .OrderBy(item => item.ID).ToList();
@@ -61,5 +65,27 @@ public class Database : ScriptableObject
     public InventoryItemData GetItem(int id)
     {
         return itemDatabase.Find(item => item.ID == id);
+    }
+
+    public SpellItemData GetGenericSpellItem()
+    {
+        return itemDatabase.Find(item => item.GetType() == typeof(SpellItemData)) as SpellItemData;
+    }
+
+    public int GetNextAvailableID()
+    {
+        int id = 0;
+
+        while (itemDatabase.Find(item => item.ID == id) != null)
+            id++;
+
+        return id;
+    }
+
+    public void AddCustomCraftedSpell(SpellItemData spellItemData)
+    {
+        spellItemData.ID = GetNextAvailableID();
+
+        itemDatabase.Add(spellItemData);
     }
 }

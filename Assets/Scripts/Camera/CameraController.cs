@@ -27,12 +27,12 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        SaveLoad.OnLoadGame += OnSaveDataLoaded;
+        SaveGameManager.OnGameSuccessfullyLoaded += OnSaveDataLoaded;
     }
 
     private void OnDestroy()
     {
-        SaveLoad.OnLoadGame -= OnSaveDataLoaded;
+        SaveGameManager.OnGameSuccessfullyLoaded -= OnSaveDataLoaded;
     }
 
     private void OnSaveDataLoaded(SaveData saveData)

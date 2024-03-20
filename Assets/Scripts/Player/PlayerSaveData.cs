@@ -10,13 +10,13 @@ public class PlayerSaveData : MonoBehaviour
     private void OnEnable()
     {
         SaveLoad.OnSaveGame += OnSaveGame;
-        SaveLoad.OnLoadGame += OnLoadGame;
+        SaveGameManager.OnGameSuccessfullyLoaded += OnLoadGame;
     }
 
     private void OnDisable()
     {
         SaveLoad.OnSaveGame -= OnSaveGame;
-        SaveLoad.OnLoadGame -= OnLoadGame;
+        SaveGameManager.OnGameSuccessfullyLoaded -= OnLoadGame;
     }
 
     private void OnSaveGame()

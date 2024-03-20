@@ -93,7 +93,7 @@ public abstract class InventoryDisplay : MonoBehaviour
                 }
 
                 int remainingOnMouse = MouseItemData.Instance.InventorySlot.StackSize - amountRemaining;
-                InventorySlot newSlot = new InventorySlot(MouseItemData.Instance.InventorySlot.Data, remainingOnMouse);
+                InventorySlot newSlot = new InventorySlot(MouseItemData.Instance.InventorySlot.Data.ID, remainingOnMouse);
 
                 MouseItemData.Instance.ClearSlot();
                 MouseItemData.Instance.UpdateMouseSlot(newSlot);
@@ -108,7 +108,7 @@ public abstract class InventoryDisplay : MonoBehaviour
 
     private void SwapSlots(InventorySlot_UI slot)
     {
-        InventorySlot temporary = new InventorySlot(MouseItemData.Instance.InventorySlot.Data, MouseItemData.Instance.InventorySlot.StackSize);
+        InventorySlot temporary = new InventorySlot(MouseItemData.Instance.InventorySlot.Data.ID, MouseItemData.Instance.InventorySlot.StackSize);
         MouseItemData.Instance.ClearSlot();
 
         MouseItemData.Instance.UpdateMouseSlot(slot.AssignedInventorySlot);

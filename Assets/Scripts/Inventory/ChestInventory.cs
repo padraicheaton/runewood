@@ -20,7 +20,12 @@ public class ChestInventory : InventoryHolder, IInteractable
 
         uniqueID = GetComponent<UniqueID>();
 
-        SaveLoad.OnLoadGame += LoadInventory;
+        SaveGameManager.OnGameSuccessfullyLoaded += LoadInventory;
+    }
+
+    private void OnDestroy()
+    {
+        SaveGameManager.OnGameSuccessfullyLoaded -= LoadInventory;
     }
 
     private void Start()

@@ -20,4 +20,9 @@ public static class ItemManager
     {
         return GetDatabase().GetItem(id);
     }
+
+    public static SpellItemData GetGenericSpellItem()
+    {
+        return GetDatabase().GetGenericSpellItem();
+    }
 }
