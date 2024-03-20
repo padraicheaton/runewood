@@ -24,6 +24,8 @@ public class ResourceComponent : MonoBehaviour
         onResourceTakenFrom += (percentage) => onResourceAmountChanged?.Invoke(percentage);
 
         onResourceAmountChanged += (percentage) => CheckForResourcedDepleted();
+
+        SaveLoad.OnLoadGame += (saveData) => ReplenishResource(maximumAmount);
     }
 
     private void OnDestroy()
