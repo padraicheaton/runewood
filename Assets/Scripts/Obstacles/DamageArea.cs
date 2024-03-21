@@ -6,6 +6,7 @@ using UnityEngine;
 public class DamageArea : MonoBehaviour
 {
     [Header("Settings")]
+    [SerializeField] private SpellComponentData.Element element;
     [SerializeField] private float damageDealt;
 
     private BoxCollider boxCollider;
@@ -21,7 +22,7 @@ public class DamageArea : MonoBehaviour
     {
         if (other.TryGetComponent<HealthComponent>(out HealthComponent healthComponent))
         {
-            healthComponent.TakeFromResource(damageDealt);
+            healthComponent.TakeDamage(element, damageDealt);
         }
     }
 }

@@ -51,7 +51,7 @@ public class SpellCaster : MonoBehaviour
         instantiatedSpell.transform.forward = forward;
 
         // Get the spell component on the object to set it up with the element and remaining actions (copyOfActions)
-        if (instantiatedSpell.TryGetComponent<ISpell>(out ISpell spellComponent))
+        if (instantiatedSpell.TryGetComponent<Spell>(out Spell spellComponent))
             spellComponent.Setup(element, copyOfActions);
     }
 

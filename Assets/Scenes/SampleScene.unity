@@ -23439,6 +23439,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maximumAmount: 100
   deathBehaviour: 0
+  elementsWeakTo: 
+  elementsStrongAgainst: 
 --- !u!1001 &1739006268
 PrefabInstance:
   m_ObjectHideFlags: 0

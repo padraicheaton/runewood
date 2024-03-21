@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Spell_Missile : MonoBehaviour, ISpell
+public class Spell_Missile : Spell
 {
     [Header("Settings")]
     [SerializeField] private float acceleration;
@@ -12,14 +12,8 @@ public class Spell_Missile : MonoBehaviour, ISpell
     private float timer;
     private float activationTime = 0.25f;
 
-    private SpellComponentData.Element element;
-    private List<SpellComponentData.Action> actions;
-
-    public void Setup(SpellComponentData.Element element, List<SpellComponentData.Action> actions)
+    protected override void OnSetup()
     {
-        this.element = element;
-        this.actions = actions;
-
         timer = 0f;
 
         rb = GetComponent<Rigidbody>();
@@ -36,14 +30,32 @@ public class Spell_Missile : MonoBehaviour, ISpell
 
     private void OnTriggerEnter(Collider other)
     {
-        // Change this
         if (timer >= activationTime && other.gameObject.layer == LayerMask.NameToLayer("Ground"))
             Detonate();
     }
 
-    public void Detonate()
+    protected override void FireDetonate()
     {
-        Debug.Log("Chaine");
+
+    }
+
+    protected override void WaterDetonate()
+    {
+
+    }
+
+    protected override void EarthDetonate()
+    {
+
+    }
+
+    protected override void AirDetonate()
+    {
+
+    }
+
+    protected override void OnDetonationFinish()
+    {
         SpellCaster.OnSpellCastRequested?.Invoke(transform.position, -transform.forward, element, actions);
 
         Destroy(gameObject);
