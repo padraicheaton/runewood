@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3512352843883348055}
   - component: {fileID: 6792200471796852198}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 556144420501567437}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GrassLedge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2089494659369005550}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,6 +189,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: floorTile
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e647400d055e6ec4da638b3e79d6e33c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -267,6 +272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: floorTile (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e647400d055e6ec4da638b3e79d6e33c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -347,6 +357,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: floorTile (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e647400d055e6ec4da638b3e79d6e33c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -425,6 +440,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: floorTile (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e647400d055e6ec4da638b3e79d6e33c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

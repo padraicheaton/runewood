@@ -15,6 +15,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private ResourceComponent healthComponent;
     [SerializeField] private ResourceComponent manaComponent;
+    [SerializeField] private Transform castOrigin;
 
     [Header("Visual Settings")]
     [SerializeField] private float damageTakenKnockAmount;
@@ -38,7 +39,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnSpellItemUsed(SpellItemData spell)
     {
-        Debug.Log($"Should cast {spell.element} {spell.actions}");
+        SpellCaster.OnItemSpellCastRequested?.Invoke(castOrigin.position + castOrigin.forward, castOrigin.forward, spell);
     }
 
     private void OnConsumableItemUsed(ConsumableItemData consumableItemData)

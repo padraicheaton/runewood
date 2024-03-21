@@ -15,11 +15,6 @@ public class InventorySlot
     public InventoryItemData Data => ItemManager.GetItem(itemID);
     public int StackSize => stackSize;
 
-    // Spell Specific Data
-    [Header("Spell Specific Data")]
-    [SerializeField] private SpellComponentData.Element element;
-    [SerializeField] private List<SpellComponentData.Action> actions;
-
     public InventorySlot(int itemID, int amount)
     {
         UpdateInventorySlot(itemID, amount);
@@ -47,29 +42,6 @@ public class InventorySlot
     {
         itemID = id;
         stackSize = amount;
-
-        // Save data if containing spell
-        if (itemID != -1 && Data.GetType() == typeof(SpellItemData))
-        {
-            SpellItemData spellItemData = Data as SpellItemData;
-
-            // If this slot has already loaded in elements and actions, apply them to this spell
-            if (element != SpellComponentData.Element.Null && actions != null)
-            {
-                spellItemData.element = element;
-                spellItemData.actions = actions;
-            }
-            else
-            {
-                element = (Data as SpellItemData).element;
-                actions = (Data as SpellItemData).actions;
-            }
-        }
-        else
-        {
-            element = SpellComponentData.Element.Null;
-            actions = null;
-        }
     }
 
     public bool RoomLeftInStack(int amountToAdd, out int amountRemaining)
