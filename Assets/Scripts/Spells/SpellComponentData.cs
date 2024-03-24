@@ -19,8 +19,7 @@ public static class SpellComponentData
     {
         Missile,
         Explosion,
-        Trap,
-        Buff
+        Split,
     }
 
     public static bool CanChainAfterAction(Action action)
@@ -30,8 +29,19 @@ public static class SpellComponentData
             default:
                 return false;
             case Action.Missile:
-            case Action.Trap:
+            case Action.Split:
                 return true;
+        }
+    }
+
+    public static bool CanFinishOnAction(Action action)
+    {
+        switch (action)
+        {
+            default:
+                return true;
+            case Action.Split:
+                return false;
         }
     }
 

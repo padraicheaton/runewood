@@ -57,7 +57,7 @@ public class CraftingInventoryDisplay : StaticInventoryDisplay
         }
 
         // Will add more checks in here later
-        bool isValidRecipe = elementRuneInSlot && totalActions >= 1 && totalActions == checkedActions.Count;
+        bool isValidRecipe = elementRuneInSlot && totalActions >= 1 && totalActions == checkedActions.Count && SpellComponentData.CanFinishOnAction(checkedActions.Last());
 
         combineBtn.interactable = isValidRecipe;
     }

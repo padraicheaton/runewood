@@ -27176,6 +27176,9 @@ MonoBehaviour:
   - action: 1
     prefab: {fileID: 3221546479540979375, guid: de00fdf87c747494a9630b809a34d94a,
       type: 3}
+  - action: 2
+    prefab: {fileID: 3820755841393259264, guid: 240b62f3a805f5c44802fa3e2bc84fb4,
+      type: 3}
 --- !u!1001 &2052417608
 PrefabInstance:
   m_ObjectHideFlags: 0
