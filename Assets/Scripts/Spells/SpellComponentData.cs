@@ -18,12 +18,21 @@ public static class SpellComponentData
     public enum Action
     {
         Missile,
+        Explosion,
+        Trap,
+        Buff
+    }
 
-
-        // == Planned ==
-        // Explosion,
-        // Trap,
-        // Buff
+    public static bool CanChainAfterAction(Action action)
+    {
+        switch (action)
+        {
+            default:
+                return false;
+            case Action.Missile:
+            case Action.Trap:
+                return true;
+        }
     }
 
     public static SpellItemData CreateCustomSpell(Element element, List<Action> actions)

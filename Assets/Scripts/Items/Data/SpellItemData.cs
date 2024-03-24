@@ -12,4 +12,14 @@ public class SpellItemData : UseableItemData
     {
         PlayerCombat.onSpellItemUsed?.Invoke(this);
     }
+
+    public override string GetDisplayName()
+    {
+        return $"{element} Spell";
+    }
+
+    public override string GetDescription()
+    {
+        return string.Join(",", actions);
+    }
 }

@@ -7,13 +7,20 @@ public class ItemGenerator : MonoBehaviour, IInteractable
 {
     [Header("Pickup")]
     [SerializeField] private ItemPickup itemPickupPrefab;
-    [SerializeField] private InventoryItemData item;
+    [SerializeField] private List<InventoryItemData> items;
+
+    private int index;
 
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
 
     public virtual void Interact(Interactor interactor, out bool interactionSuccessful)
     {
-        GenerateItem(item);
+        GenerateItem(items[index]);
+
+        index++;
+
+        if (index >= items.Count)
+            index = 0;
 
         interactionSuccessful = true;
     }

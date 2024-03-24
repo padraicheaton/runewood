@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class InventorySlot_UI : MonoBehaviour
+public class InventorySlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image itemIcon;
     [SerializeField] private TextMeshProUGUI itemCount;
@@ -13,6 +15,8 @@ public class InventorySlot_UI : MonoBehaviour
 
     public InventorySlot AssignedInventorySlot => assignedInventorySlot;
     public InventoryDisplay ParentDisplay { get; private set; }
+
+    public UnityAction OnItemDataChanged;
 
     private void Awake()
     {
@@ -63,6 +67,8 @@ public class InventorySlot_UI : MonoBehaviour
                 itemCount.text = slot.StackSize.ToString();
             else
                 itemCount.text = "";
+
+            OnItemDataChanged?.Invoke();
         }
         else
             ClearSlot();
@@ -86,10 +92,22 @@ public class InventorySlot_UI : MonoBehaviour
         itemIcon.sprite = null;
         itemIcon.color = Color.clear;
         itemCount.text = "";
+
+        OnItemDataChanged?.Invoke();
     }
 
     public void OnUISlotClick()
     {
         ParentDisplay?.SlotClicked(this);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        MouseItemData.Instance.HoveredOverItemSlot(this);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        MouseItemData.Instance.ExitHoveredItemSlot(this);
     }
 }

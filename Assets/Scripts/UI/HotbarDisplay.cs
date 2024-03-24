@@ -11,6 +11,16 @@ public class HotbarDisplay : StaticInventoryDisplay
     private InventorySlot_UI ActiveSlotUI => slots[activeSlotIndex];
     private InventoryItemData ActiveItem => ActiveSlotUI.AssignedInventorySlot.Data;
 
+    private void OnEnable()
+    {
+        PlayerInventoryHolder.OnPlayerInventoryChanged += RefreshStaticDisplay;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInventoryHolder.OnPlayerInventoryChanged -= RefreshStaticDisplay;
+    }
+
     protected override void Start()
     {
         base.Start();

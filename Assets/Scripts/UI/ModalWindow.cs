@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class ModalWindow : MonoBehaviour
 {
     private CanvasGroup cg;
     public bool shown { get; private set; }
+
+    public UnityAction OnModalWindowOpened;
+    public UnityAction OnModalWindowClosed;
 
     protected virtual void Start()
     {
@@ -28,6 +32,8 @@ public class ModalWindow : MonoBehaviour
         cg.interactable = cg.blocksRaycasts = true;
 
         shown = true;
+
+        OnModalWindowOpened?.Invoke();
     }
 
     public void Hide()
@@ -41,6 +47,8 @@ public class ModalWindow : MonoBehaviour
         cg.interactable = cg.blocksRaycasts = false;
 
         shown = false;
+
+        OnModalWindowClosed?.Invoke();
     }
 
     public void Toggle()

@@ -258,8 +258,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7844640603568737736}
-  - component: {fileID: 2206994822743049236}
   - component: {fileID: 6498283017806588153}
+  - component: {fileID: 1851248784975440714}
   m_Layer: 6
   m_Name: Spell Book Tree
   m_TagString: Untagged
@@ -286,21 +286,6 @@ Transform:
   - {fileID: 1247190748680704727}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2206994822743049236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9015498232401922878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deda2c734f3f3e34789c5b0f20802934, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPickupPrefab: {fileID: 7410749145211866892, guid: 56a32c0121570bf45b7fa0d56cb85909,
-    type: 3}
-  item: {fileID: 0}
 --- !u!65 &6498283017806588153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -322,6 +307,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.5, z: 1}
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &1851248784975440714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015498232401922878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c646bc80d9dbe984098d3edac603e7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPickupPrefab: {fileID: 7410749145211866892, guid: 56a32c0121570bf45b7fa0d56cb85909,
+    type: 3}
+  items:
+  - {fileID: 11400000, guid: 86ffa10826f35d14cb19301bbf895a8f, type: 2}
+  - {fileID: 11400000, guid: 84bce84aa3ae7d3498c8dfa1f71560c3, type: 2}
+  - {fileID: 11400000, guid: 960ffff2abd881f418c031b2213d1363, type: 2}
+  - {fileID: 11400000, guid: 528b75aca020c3045b507deb438b6a17, type: 2}
+  - {fileID: 11400000, guid: c0f88ebab4bef6949aedd9202ac617f5, type: 2}
+  - {fileID: 11400000, guid: 907969fb5d7e7c644ad142f89070fe55, type: 2}
 --- !u!1001 &2259109443796709410
 PrefabInstance:
   m_ObjectHideFlags: 0

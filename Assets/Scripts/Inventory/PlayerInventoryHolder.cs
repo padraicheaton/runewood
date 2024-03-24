@@ -12,6 +12,8 @@ public class PlayerInventoryHolder : InventoryHolder
     public static UnityAction<InventorySlot> OnConsumableItemUsed;
     public static UnityAction<InventorySystem, string, int> OnBackpackInventoryDisplayRequested;
 
+    public static UnityAction<InventoryItemData, int> OnAddToPlayerInventoryRequested;
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,6 +23,9 @@ public class PlayerInventoryHolder : InventoryHolder
         InputProvider.onBackpackButtonPressed += OpenBackpack;
 
         OnDynamicInventoryDisplayRequested += (system, title, offst) => OpenBackpack();
+        CraftingInventoryHolder.OnCraftingWindowOpened += OpenBackpack;
+
+        OnAddToPlayerInventoryRequested += (item, amt) => AddToInventory(item, amt);
     }
 
     private void Start()

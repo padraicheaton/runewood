@@ -7,11 +7,17 @@ using UnityEngine.InputSystem;
 
 public class MouseItemData : MonoBehaviour
 {
+
     public static MouseItemData Instance;
 
     public Image itemSprite;
     public TextMeshProUGUI itemCountTxt;
     public InventorySlot InventorySlot;
+
+    public GameObject tooltipContainer;
+    public TextMeshProUGUI tooltipNameTxt, tooltipDescriptionTxt;
+
+    private InventorySlot_UI hoveredItemSlot;
 
     private void Awake()
     {
@@ -22,6 +28,8 @@ public class MouseItemData : MonoBehaviour
 
         itemSprite.color = Color.clear;
         itemCountTxt.text = "";
+
+        tooltipContainer.SetActive(false);
     }
 
     public void UpdateMouseSlot(InventorySlot slot)
@@ -43,9 +51,34 @@ public class MouseItemData : MonoBehaviour
 
     private void Update()
     {
-        if (InventorySlot.Data != null)
+        if (InputProvider.activeActionMap == InputProvider.ActionMaps.UI)
         {
             transform.position = Mouse.current.position.ReadValue();
+        }
+    }
+
+    public void HoveredOverItemSlot(InventorySlot_UI slot)
+    {
+        hoveredItemSlot = slot;
+
+        if (hoveredItemSlot.AssignedInventorySlot.Data != null)
+        {
+            tooltipContainer.SetActive(true);
+            tooltipNameTxt.text = hoveredItemSlot.AssignedInventorySlot.Data.GetDisplayName();
+            tooltipDescriptionTxt.text = hoveredItemSlot.AssignedInventorySlot.Data.GetDescription();
+        }
+        else
+        {
+            tooltipContainer.SetActive(false);
+        }
+    }
+
+    public void ExitHoveredItemSlot(InventorySlot_UI slot)
+    {
+        if (hoveredItemSlot == slot)
+        {
+            // If exiting the one that has just been hovered over, i.e. not switching to then hover over another slot
+            tooltipContainer.SetActive(false);
         }
     }
 }
