@@ -30,12 +30,12 @@ public abstract class InventoryDisplay : MonoBehaviour
         }
     }
 
-    public void SlotClicked(InventorySlot_UI clickedUISlot)
+    public void SlotClicked(InventorySlot_UI clickedUISlot, bool wasRightClicked)
     {
         if (clickedUISlot.AssignedInventorySlot.Data != null && MouseItemData.Instance.InventorySlot.Data == null) // If the clicked slot has an item in it and the mouse does not
         {
             // If holding the split item button and can split the stack, pick up the split stack
-            if (InputProvider.SplitItemPressed && clickedUISlot.AssignedInventorySlot.SplitStack(out InventorySlot splitStackSlot))
+            if (wasRightClicked && clickedUISlot.AssignedInventorySlot.SplitStack(out InventorySlot splitStackSlot))
             {
                 clickedUISlot.UpdateUISlot();
 
@@ -56,10 +56,26 @@ public abstract class InventoryDisplay : MonoBehaviour
 
         if (clickedUISlot.AssignedInventorySlot.Data == null && MouseItemData.Instance.InventorySlot.Data != null) // If the clicked slot has no item, but the mouse does
         {
-            // Place the item in there
-            clickedUISlot.AssignedInventorySlot.AssignItem(MouseItemData.Instance.InventorySlot);
-            clickedUISlot.UpdateUISlot();
-            MouseItemData.Instance.ClearSlot();
+            if (wasRightClicked)
+            {
+                // Only place one item in there
+                clickedUISlot.AssignedInventorySlot.UpdateInventorySlot(MouseItemData.Instance.InventorySlot.Data.ID, 1);
+                clickedUISlot.UpdateUISlot();
+
+                MouseItemData.Instance.InventorySlot.RemoveFromStack(1);
+
+                if (MouseItemData.Instance.InventorySlot.StackSize <= 0)
+                    MouseItemData.Instance.ClearSlot();
+                else
+                    MouseItemData.Instance.UpdateMouseSlot();
+            }
+            else
+            {
+                // Place the item in there
+                clickedUISlot.AssignedInventorySlot.AssignItem(MouseItemData.Instance.InventorySlot);
+                clickedUISlot.UpdateUISlot();
+                MouseItemData.Instance.ClearSlot();
+            }
 
             return;
         }

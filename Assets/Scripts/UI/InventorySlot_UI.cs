@@ -4,14 +4,12 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class InventorySlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Image itemIcon;
     [SerializeField] private TextMeshProUGUI itemCount;
     [SerializeField] private Image highlightedBGImage;
     [SerializeField] private InventorySlot assignedInventorySlot;
-
-    private Button button;
 
     public InventorySlot AssignedInventorySlot => assignedInventorySlot;
     public InventoryDisplay ParentDisplay { get; private set; }
@@ -21,9 +19,6 @@ public class InventorySlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private void Awake()
     {
         ClearSlot();
-
-        button = GetComponent<Button>();
-        button?.onClick.AddListener(OnUISlotClick);
 
         ParentDisplay = FindParentDisplay();
 
@@ -96,11 +91,6 @@ public class InventorySlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
         OnItemDataChanged?.Invoke();
     }
 
-    public void OnUISlotClick()
-    {
-        ParentDisplay?.SlotClicked(this);
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         MouseItemData.Instance.HoveredOverItemSlot(this);
@@ -109,5 +99,10 @@ public class InventorySlot_UI : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerExit(PointerEventData eventData)
     {
         MouseItemData.Instance.ExitHoveredItemSlot(this);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        ParentDisplay?.SlotClicked(this, eventData.button.Equals(PointerEventData.InputButton.Right));
     }
 }

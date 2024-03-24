@@ -41,6 +41,13 @@ public class MouseItemData : MonoBehaviour
         itemSprite.color = Color.white;
     }
 
+    public void UpdateMouseSlot()
+    {
+        itemSprite.sprite = InventorySlot.Data.icon;
+        itemCountTxt.text = InventorySlot.StackSize > 1 ? InventorySlot.StackSize.ToString() : "";
+        itemSprite.color = Color.white;
+    }
+
     public void ClearSlot()
     {
         InventorySlot.ClearSlot();
