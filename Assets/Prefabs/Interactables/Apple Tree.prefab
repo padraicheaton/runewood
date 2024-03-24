@@ -300,7 +300,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPickupPrefab: {fileID: 7410749145211866892, guid: 56a32c0121570bf45b7fa0d56cb85909,
     type: 3}
-  item: {fileID: 11400000, guid: 126df3113b58d49489aabb22bd200e29, type: 2}
+  items:
+  - {fileID: 11400000, guid: 126df3113b58d49489aabb22bd200e29, type: 2}
+  - {fileID: 11400000, guid: 71376a307f3c89047abe2d9db5a86e8e, type: 2}
 --- !u!65 &6498283017806588153
 BoxCollider:
   m_ObjectHideFlags: 0

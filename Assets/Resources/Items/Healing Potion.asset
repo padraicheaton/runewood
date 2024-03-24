@@ -16,6 +16,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 88fe057d745bd9340ba70b57a91ceed4, type: 3}
   maximumStackSize: 5
   displayName: Healing Potion
-  description: Drinking this heals you for 10
+  description: 'Drinking this heals you for 20
+
+'
   resource: 0
-  amount: 10
+  amount: 20
