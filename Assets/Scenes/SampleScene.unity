@@ -1707,7 +1707,7 @@ PrefabInstance:
     - target: {fileID: 4672955498962483286, guid: e10325660d9a5e844a99997252c1cb70,
         type: 3}
       propertyPath: m_Name
-      value: Inscryption Table
+      value: Inscription Table
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23844,6 +23844,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumAmount: 100
+  doesRegenerateNaturally: 1
+  regenerationDelay: 1
+  regenerationTickAmount: 5
 --- !u!114 &1710255469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23857,6 +23860,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumAmount: 100
+  doesRegenerateNaturally: 1
+  regenerationDelay: 1
+  regenerationTickAmount: 1
   deathBehaviour: 0
   elementsWeakTo: 
   elementsStrongAgainst: 

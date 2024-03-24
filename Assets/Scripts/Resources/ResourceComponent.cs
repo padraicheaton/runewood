@@ -7,6 +7,11 @@ public class ResourceComponent : MonoBehaviour
 {
     [Header("Resource Settings")]
     [SerializeField] private float maximumAmount;
+    [SerializeField] private bool doesRegenerateNaturally;
+    [SerializeField] private float regenerationDelay;
+    [SerializeField] private float regenerationTickAmount;
+
+    private float timer;
 
     protected float currentAmount;
 
@@ -26,6 +31,20 @@ public class ResourceComponent : MonoBehaviour
         onResourceAmountChanged += (percentage) => CheckForResourcedDepleted();
 
         SaveGameManager.OnGameSuccessfullyLoaded += (saveData) => ReplenishResource(maximumAmount);
+    }
+
+    private void Update()
+    {
+        if (doesRegenerateNaturally && ResourcePercentage < 1f)
+        {
+            if (timer < regenerationDelay)
+                timer += Time.deltaTime;
+            else
+            {
+                ReplenishResource(regenerationTickAmount);
+                timer = 0f;
+            }
+        }
     }
 
     private void OnDestroy()
@@ -55,8 +74,12 @@ public class ResourceComponent : MonoBehaviour
     {
         currentAmount -= amount;
 
+        timer = 0f;
+
         onResourceTakenFrom?.Invoke(ResourcePercentage);
     }
+
+    public bool HasAmount(float amount) => currentAmount >= amount;
 
     private void CheckForResourcedDepleted()
     {

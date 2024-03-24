@@ -39,7 +39,17 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnSpellItemUsed(SpellItemData spell)
     {
-        SpellCaster.OnItemSpellCastRequested?.Invoke(castOrigin.position + castOrigin.forward, castOrigin.forward, spell);
+        float totalManaCost = 0f;
+
+        foreach (SpellComponentData.Action action in spell.actions)
+            totalManaCost += SpellComponentData.GetActionManaCost(action);
+
+        if (manaComponent.HasAmount(totalManaCost))
+        {
+            SpellCaster.OnItemSpellCastRequested?.Invoke(castOrigin.position + castOrigin.forward, castOrigin.forward, spell);
+
+            manaComponent.TakeFromResource(totalManaCost);
+        }
     }
 
     private void OnConsumableItemUsed(ConsumableItemData consumableItemData)

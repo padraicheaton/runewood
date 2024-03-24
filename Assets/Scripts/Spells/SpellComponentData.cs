@@ -45,6 +45,20 @@ public static class SpellComponentData
         }
     }
 
+    public static float GetActionManaCost(Action action)
+    {
+        switch (action)
+        {
+            default:
+            case Action.Missile:
+                return 10f;
+            case Action.Explosion:
+                return 15f;
+            case Action.Split:
+                return 15f;
+        }
+    }
+
     public static SpellItemData CreateCustomSpell(Element element, List<Action> actions)
     {
         if (SaveGameManager.CurrentSaveData.craftedSpellData.TryGetExistingSpell(element, actions, out SpellItemData existingSpell))
