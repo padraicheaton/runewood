@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using Unity.Loading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,30 +21,30 @@ public class ChestInventory : InventoryHolder, IInteractable
         base.Awake();
 
         uniqueID = GetComponent<UniqueID>();
-
-        SaveGameManager.OnGameSuccessfullyLoaded += LoadInventory;
+        LoadInventory(SaveGameManager.CurrentSaveData);
     }
 
-    private void OnDestroy()
+    public void LoadInventoryFromSave(InventorySystem _inventorySystem)
     {
-        SaveGameManager.OnGameSuccessfullyLoaded -= LoadInventory;
-    }
-
-    private void Start()
-    {
-        InventorySaveData chestSaveData = new InventorySaveData(inventorySystem, transform.position, transform.rotation);
-
-        SaveGameManager.CurrentSaveData.chestDictionary.Add(uniqueID.ID, chestSaveData);
+        inventorySystem = _inventorySystem;
     }
 
     protected override void LoadInventory(SaveData data)
     {
-        if (data.chestDictionary.TryGetValue(uniqueID.ID, out InventorySaveData chestSaveData))
-        {
-            inventorySystem = chestSaveData.invSystem;
-            transform.position = chestSaveData.position;
-            transform.rotation = chestSaveData.rotation;
-        }
+        // Debug.Log($"ID {uniqueID.ID}");
+
+        // if (data.chestDictionary.TryGetValue(uniqueID.ID, out InventorySaveData chestSaveData))
+        // {
+        //     inventorySystem = chestSaveData.invSystem;
+        //     transform.position = chestSaveData.position;
+        //     transform.rotation = chestSaveData.rotation;
+        // }
+        // else
+        // {
+        //     InventorySaveData saveData = new InventorySaveData(inventorySystem, transform.position, transform.rotation);
+
+        //     SaveGameManager.CurrentSaveData.chestDictionary.Add(uniqueID.ID, saveData);
+        // }
     }
 
     public void Interact(Interactor interactor, out bool interactionSuccessful)

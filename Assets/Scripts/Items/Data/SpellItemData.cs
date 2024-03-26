@@ -20,6 +20,6 @@ public class SpellItemData : UseableItemData
 
     public override string GetDescription()
     {
-        return string.Join(",", actions);
+        return string.Join("\n", actions);
     }
 }

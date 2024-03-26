@@ -5,11 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 
-public class MouseItemData : MonoBehaviour
+public class MouseItemData : Singleton<MouseItemData>
 {
-
-    public static MouseItemData Instance;
-
     public Image itemSprite;
     public TextMeshProUGUI itemCountTxt;
     public InventorySlot InventorySlot;
@@ -21,11 +18,6 @@ public class MouseItemData : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(this);
-
         itemSprite.color = Color.clear;
         itemCountTxt.text = "";
 

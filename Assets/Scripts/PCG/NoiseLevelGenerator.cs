@@ -12,6 +12,7 @@ public class NoiseLevelGenerator : MonoBehaviour
     [SerializeField] private float squareWidth;
     [SerializeField] private float heightMultiplier;
     [SerializeField] private float scale;
+    [SerializeField] private float zeroPlateauRadius;
 
     [ContextMenu("Generate New Level")]
     public void GenerateLevel()
@@ -42,8 +43,6 @@ public class NoiseLevelGenerator : MonoBehaviour
             // Check for neighbours
             bool isNotEdge = groundPoints.Contains(point + Vector3.forward) && groundPoints.Contains(point + Vector3.back) && groundPoints.Contains(point + Vector3.left) && groundPoints.Contains(point + Vector3.right);
 
-            Debug.Log($"Is Not Edge: {isNotEdge}");
-
             GameObject obj = Instantiate(isNotEdge ? groundObject : edgeGroundObject, point, Quaternion.identity);
 
             obj.transform.SetParent(transform);
@@ -52,7 +51,14 @@ public class NoiseLevelGenerator : MonoBehaviour
 
     private float GetHeightAtPoint(Vector3 point, float offset)
     {
-        return Mathf.PerlinNoise(point.x * scale + offset, point.z * scale + offset);
+        float dist = Vector3.Distance(Vector3.zero, point);
+
+        float multiplier = 1f;
+
+        if (dist < zeroPlateauRadius)
+            multiplier = Mathf.Lerp(0f, 1f, dist / zeroPlateauRadius);
+
+        return Mathf.PerlinNoise(point.x * scale + offset, point.z * scale + offset) * heightMultiplier * multiplier;
     }
 
     private void OnDrawGizmos()

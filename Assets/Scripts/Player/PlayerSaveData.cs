@@ -7,27 +7,26 @@ public class PlayerSaveData : MonoBehaviour
 {
     public static UnityAction<PlayerData> onPlayerDataLoaded;
 
+    private void Start()
+    {
+        // Assuming that the save data has already been loaded
+        onPlayerDataLoaded?.Invoke(SaveGameManager.CurrentSaveData.playerData);
+    }
+
     private void OnEnable()
     {
         SaveLoad.OnSaveGame += OnSaveGame;
-        SaveGameManager.OnGameSuccessfullyLoaded += OnLoadGame;
     }
 
     private void OnDisable()
     {
         SaveLoad.OnSaveGame -= OnSaveGame;
-        SaveGameManager.OnGameSuccessfullyLoaded -= OnLoadGame;
     }
 
     private void OnSaveGame()
     {
         SaveGameManager.CurrentSaveData.playerData.position = transform.position;
         SaveGameManager.CurrentSaveData.playerData.rotation = transform.rotation;
-    }
-
-    private void OnLoadGame(SaveData data)
-    {
-        onPlayerDataLoaded?.Invoke(data.playerData);
     }
 }
 

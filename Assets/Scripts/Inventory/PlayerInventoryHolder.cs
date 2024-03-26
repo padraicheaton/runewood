@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Loading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -30,6 +31,8 @@ public class PlayerInventoryHolder : InventoryHolder
 
     private void Start()
     {
+        LoadInventory(SaveGameManager.CurrentSaveData);
+
         SaveGameManager.CurrentSaveData.playerInventory = new InventorySaveData(inventorySystem);
     }
 

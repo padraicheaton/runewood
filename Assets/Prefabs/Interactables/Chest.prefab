@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2424151458223640480}
   - component: {fileID: 6079405384362972017}
+  - component: {fileID: 8187359523130993386}
   - component: {fileID: 5244579971929571188}
   - component: {fileID: 8753141668290693458}
   m_Layer: 6
@@ -56,6 +57,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &8187359523130993386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2712444792959119494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4947574d47dfcea40ba3988473242638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5244579971929571188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,9 +82,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 20
-  displayName: 
   inventorySystem:
     inventorySlots: []
+  displayName: 
 --- !u!114 &8753141668290693458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3d540cd0a026fe4186550bfa1829535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 2c5c6556-5ac5-452f-80ff-b994af0b088b
+  _id: 9e8aee75-e3fa-4201-aa90-65289fddfc01
 --- !u!1001 &3874117097925301034
 PrefabInstance:
   m_ObjectHideFlags: 0

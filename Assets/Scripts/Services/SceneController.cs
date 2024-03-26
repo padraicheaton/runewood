@@ -1,0 +1,104 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
+public class SceneController : Singleton<SceneController>
+{
+    public enum Scene // This is a mirror of the build settings, and should be updated whenever that is updated
+    {
+        ServicesLayer, // Contains scripts that are needed no matter what other scene is loaded (where this script sits)
+        MainMenu,
+        GameServices, // Contains scripts that are needed anywhere during the standard gameplay loop
+        HomeArea // Contains the level layout for the home area
+    }
+
+    private List<AsyncOperation> sceneLoadingOperations = new List<AsyncOperation>();
+
+    public bool IsLoading => sceneLoadingOperations.Count > 0;
+    public UnityAction<Scene> OnSceneLoaded;
+
+
+    [SerializeField] private Scene primaryScene;
+
+    public Scene ActiveScene { get; private set; }
+
+    private void Awake()
+    {
+        LoadScene(primaryScene);
+    }
+
+    public void LoadScene(Scene scene)
+    {
+        // Unload any scenes that are not needed
+        List<Scene> loadedScenes = GetActiveScenes();
+
+        // If destination scene is already loaded, return out of this function
+        if (loadedScenes.Contains(scene))
+            return;
+
+        // Don't unload the services layer
+        loadedScenes.Remove(Scene.ServicesLayer);
+
+        // Don't unload any required scenes
+        foreach (Scene requiredScene in GetRequiredScenesForScene(scene))
+            loadedScenes.Remove(requiredScene);
+
+        // Unload any remaining scenes
+        foreach (Scene unusedScene in loadedScenes)
+            sceneLoadingOperations.Add(SceneManager.UnloadSceneAsync((int)unusedScene));
+
+        List<Scene> scenesToLoad = new List<Scene>();
+
+        // Add all required scenes that haven't been loaded yet
+        scenesToLoad.AddRange(GetRequiredScenesForScene(scene).Where(s => !IsSceneLoaded(s)));
+
+        // Finally add the desired scene to load last, so that it is loaded after the required scenes have loaded
+        scenesToLoad.Add(scene);
+
+        // Load all remaining needed scenes
+        foreach (Scene sceneToLoad in scenesToLoad)
+            sceneLoadingOperations.Add(SceneManager.LoadSceneAsync((int)sceneToLoad, LoadSceneMode.Additive));
+
+        ActiveScene = scene;
+
+        OnSceneLoaded?.Invoke(scene);
+    }
+
+    private List<Scene> GetRequiredScenesForScene(Scene scene)
+    {
+        List<Scene> requiredScenes = new List<Scene>();
+
+        switch (scene)
+        {
+            case Scene.HomeArea:
+                requiredScenes.Add(Scene.GameServices);
+                break;
+            default:
+                break;
+        }
+
+        return requiredScenes;
+    }
+
+    private List<Scene> GetActiveScenes()
+    {
+        List<Scene> activeScenes = new List<Scene>();
+
+        foreach (Scene scene in Enum.GetValues(typeof(Scene)))
+            if (IsSceneLoaded(scene))
+                activeScenes.Add(scene);
+
+        return activeScenes;
+    }
+
+    private bool IsSceneLoaded(Scene scene) => SceneManager.GetSceneByBuildIndex((int)scene).isLoaded;
+
+    public void MoveGameObjectToActiveScene(GameObject obj)
+    {
+        SceneManager.MoveGameObjectToScene(obj, SceneManager.GetSceneByBuildIndex((int)ActiveScene));
+    }
+}

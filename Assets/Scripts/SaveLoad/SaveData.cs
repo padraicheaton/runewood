@@ -12,11 +12,14 @@ public class SaveData
 
     public CraftedSpellData craftedSpellData;
 
+    public SerializablePlacedItemDictionary placedItemDictionary;
+
     public SaveData()
     {
         chestDictionary = new SerializableInventoryDictionary();
         playerData = new PlayerData();
         playerInventory = new InventorySaveData();
         craftedSpellData = new CraftedSpellData();
+        placedItemDictionary = new SerializablePlacedItemDictionary();
     }
 }

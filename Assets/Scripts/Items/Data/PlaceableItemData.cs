@@ -10,6 +10,6 @@ public class PlaceableItemData : UseableItemData
 
     protected override void OnItemUsed()
     {
-        throw new System.NotImplementedException();
+        PlayerBuildingController.OnPlaceableItemUsed?.Invoke(this);
     }
 }
