@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -31,6 +32,16 @@ public class SceneController : Singleton<SceneController>
         LoadScene(primaryScene);
     }
 
+#if UNITY_EDITOR
+
+    [ContextMenu("Load Selected Scene")]
+    public void EditorLoadScene()
+    {
+        LoadScene(primaryScene);
+    }
+
+#endif
+
     public void LoadScene(Scene scene)
     {
         // Unload any scenes that are not needed
@@ -48,8 +59,10 @@ public class SceneController : Singleton<SceneController>
             loadedScenes.Remove(requiredScene);
 
         // Unload any remaining scenes
-        foreach (Scene unusedScene in loadedScenes)
-            sceneLoadingOperations.Add(SceneManager.UnloadSceneAsync((int)unusedScene));
+        if (Application.isPlaying)
+            UnloadSceneList(loadedScenes);
+        else
+            UnloadSceneListEditor(loadedScenes);
 
         List<Scene> scenesToLoad = new List<Scene>();
 
@@ -60,12 +73,40 @@ public class SceneController : Singleton<SceneController>
         scenesToLoad.Add(scene);
 
         // Load all remaining needed scenes
-        foreach (Scene sceneToLoad in scenesToLoad)
-            sceneLoadingOperations.Add(SceneManager.LoadSceneAsync((int)sceneToLoad, LoadSceneMode.Additive));
+        if (Application.isPlaying)
+            LoadSceneList(scenesToLoad);
+        else
+            LoadSceneListEditor(scenesToLoad);
 
         ActiveScene = scene;
 
         OnSceneLoaded?.Invoke(scene);
+    }
+
+    private void UnloadSceneList(List<Scene> scenesToUnload)
+    {
+        foreach (Scene unusedScene in scenesToUnload)
+            sceneLoadingOperations.Add(SceneManager.UnloadSceneAsync((int)unusedScene));
+    }
+
+    private void LoadSceneList(List<Scene> scenesToLoad)
+    {
+        foreach (Scene sceneToLoad in scenesToLoad)
+            sceneLoadingOperations.Add(SceneManager.LoadSceneAsync((int)sceneToLoad, LoadSceneMode.Additive));
+    }
+
+    private void UnloadSceneListEditor(List<Scene> scenesToUnload)
+    {
+        foreach (Scene unusedScene in scenesToUnload)
+            //sceneLoadingOperations.Add(SceneManager.UnloadSceneAsync((int)unusedScene));
+            EditorSceneManager.CloseScene(SceneManager.GetSceneByBuildIndex((int)unusedScene), true);
+    }
+
+    private void LoadSceneListEditor(List<Scene> scenesToLoad)
+    {
+        foreach (Scene sceneToLoad in scenesToLoad)
+            //sceneLoadingOperations.Add(SceneManager.LoadSceneAsync((int)sceneToLoad, LoadSceneMode.Additive));
+            EditorSceneManager.OpenScene(SceneUtility.GetScenePathByBuildIndex((int)sceneToLoad), OpenSceneMode.Additive);
     }
 
     private List<Scene> GetRequiredScenesForScene(Scene scene)
