@@ -16,4 +16,10 @@ public class DevToolsWindow : ModalWindow
 
     public void OnDeleteSaveDataPressed() => SaveLoad.DeleteSaveData();
     public void OnLoadSaveBtnPressed() => SaveGameManager.TryLoadData();
+
+    public void OnGiveAllItemsBtnPressed()
+    {
+        foreach (InventoryItemData item in ItemManager.GetDatabase().GetAllItems())
+            PlayerInventoryHolder.OnAddToPlayerInventoryRequested(item, 1);
+    }
 }

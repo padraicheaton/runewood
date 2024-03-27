@@ -67,6 +67,11 @@ public class Database : ScriptableObject
         return itemDatabase.Find(item => item.ID == id);
     }
 
+    public List<InventoryItemData> GetAllItems()
+    {
+        return itemDatabase;
+    }
+
     public SpellItemData GetGenericSpellItem()
     {
         return itemDatabase.Find(item => item.GetType() == typeof(SpellItemData)) as SpellItemData;

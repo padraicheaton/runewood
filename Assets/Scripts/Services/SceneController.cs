@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
@@ -33,13 +34,26 @@ public class SceneController : Singleton<SceneController>
     }
 
 #if UNITY_EDITOR
-
-    [ContextMenu("Load Selected Scene")]
-    public void EditorLoadScene()
+    public void EditorLoadScene(Scene scene)
     {
-        LoadScene(primaryScene);
+        if (Application.isPlaying)
+            return;
+
+        primaryScene = scene;
+
+        LoadScene(scene);
     }
 
+    public void SafeEnterPlay()
+    {
+        List<Scene> allScenes = Enum.GetValues(typeof(Scene)).Cast<Scene>().ToList();
+
+        allScenes.Remove(Scene.ServicesLayer);
+
+        UnloadSceneListEditor(allScenes);
+
+        EditorApplication.EnterPlaymode();
+    }
 #endif
 
     public void LoadScene(Scene scene)
@@ -48,7 +62,7 @@ public class SceneController : Singleton<SceneController>
         List<Scene> loadedScenes = GetActiveScenes();
 
         // If destination scene is already loaded, return out of this function
-        if (loadedScenes.Contains(scene))
+        if (IsSceneLoaded(scene))
             return;
 
         // Don't unload the services layer

@@ -20,6 +20,9 @@ public static class SpellComponentData
         Missile,
         Explosion,
         Split,
+        Trap,
+        Self,
+        Surface
     }
 
     public static bool CanChainAfterAction(Action action)
@@ -30,6 +33,7 @@ public static class SpellComponentData
                 return false;
             case Action.Missile:
             case Action.Split:
+            case Action.Trap:
                 return true;
         }
     }
