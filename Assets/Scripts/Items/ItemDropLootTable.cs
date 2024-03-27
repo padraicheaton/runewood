@@ -13,7 +13,7 @@ public class ItemDropLootTable : ScriptableObject
 
         foreach (ItemDrop drop in drops)
         {
-            if (drop.chance <= Random.value)
+            if (drop.chance > Random.value)
                 items.Add(drop.item);
         }
 

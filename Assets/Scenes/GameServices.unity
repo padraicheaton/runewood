@@ -8298,7 +8298,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1201364158}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1585978293}
+        m_TargetAssemblyTypeName: PauseWindow, Assembly-CSharp
+        m_MethodName: OnExitBtnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1201364158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10265,7 +10277,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585978289}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -11137,6 +11149,7 @@ GameObject:
   - component: {fileID: 1864644918}
   - component: {fileID: 1864644919}
   - component: {fileID: 1864644920}
+  - component: {fileID: 1864644921}
   m_Layer: 0
   m_Name: Game Services
   m_TagString: Untagged
@@ -11193,6 +11206,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d19b47810ab5d14f95a71cc5dbbafe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1864644921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864644917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c646bc80d9dbe984098d3edac603e7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPickupPrefab: {fileID: 7410749145211866892, guid: 56a32c0121570bf45b7fa0d56cb85909,
+    type: 3}
 --- !u!1 &1891130687
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,9 +34,6 @@ public class SaveGameManager : MonoBehaviour
     {
         CurrentSaveData = _data;
 
-        // Refresh the item database
-        ItemManager.GetDatabase().SetItemIDs();
-
         OnGameSuccessfullyLoaded?.Invoke(CurrentSaveData);
     }
 

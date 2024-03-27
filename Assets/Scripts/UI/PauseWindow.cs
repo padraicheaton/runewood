@@ -24,4 +24,5 @@ public class PauseWindow : ModalWindow
     public void ResumeBtnPressed() => ModalWindowManager.ClearAllWindows();
     public void SaveBtnPressed() => SaveGameManager.SaveData();
     public void DevToolsBtnPressed() => DevToolsWindow.onDevToolsWindowRequested?.Invoke();
+    public void OnExitBtnPressed() => SceneController.Instance.LoadScene(SceneController.Scene.MainMenu);
 }

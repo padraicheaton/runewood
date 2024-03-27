@@ -4,6 +4,9 @@ public class GameInit : MonoBehaviour
 {
     private void OnEnable()
     {
+        // Refresh the item database
+        ItemManager.GetDatabase().SetItemIDs();
+
         InputProvider.OnEnable();
         ModalWindowManager.Init();
     }

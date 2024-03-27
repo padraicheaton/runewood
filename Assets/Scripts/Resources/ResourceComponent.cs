@@ -81,7 +81,7 @@ public class ResourceComponent : MonoBehaviour
 
     private void CheckForResourcedDepleted()
     {
-        if (currentAmount < 0)
+        if (currentAmount <= 0)
         {
             currentAmount = 0;
 

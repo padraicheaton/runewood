@@ -36,7 +36,7 @@ public class Spell_Missile : Spell
 
     protected override void FireDetonate()
     {
-
+        DealDamageInArea(baseDamage, transform.position, 1f);
     }
 
     protected override void WaterDetonate()

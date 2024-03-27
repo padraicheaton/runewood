@@ -11,7 +11,7 @@ public abstract class Spell : MonoBehaviour
     [SerializeField] private ParticleSystem airParticleSystem;
 
     [Header("General Spell Settings")]
-    [SerializeField] private float baseDamage;
+    [SerializeField] protected float baseDamage;
 
     protected SpellComponentData.Element element;
     protected List<SpellComponentData.Action> actions;
@@ -76,4 +76,14 @@ public abstract class Spell : MonoBehaviour
     protected abstract void AirDetonate();
 
     protected abstract void OnDetonationFinish();
+
+    // Helper Functions
+    protected void DealDamageInArea(float damage, Vector3 origin, float radius)
+    {
+        foreach (Collider coll in Physics.OverlapSphere(origin, radius))
+        {
+            if (coll.TryGetComponent<HealthComponent>(out HealthComponent hc))
+                hc.TakeDamage(element, damage);
+        }
+    }
 }

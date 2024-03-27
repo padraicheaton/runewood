@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Runewood/Inventory/Placeable Item")]
-public class PlaceableItemData : UseableItemData
+public class PlaceableItemData : ConsumableItemData
 {
     [Header("Placeable Item")]
     public GameObject prefab;

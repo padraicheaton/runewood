@@ -34,7 +34,8 @@ public static class ModalWindowManager
     {
         if (modalWindows.Count > 0)
         {
-            modalWindows.Last().Hide(); // This also removes itself from the list
+            //modalWindows.Last().Hide(); // This also removes itself from the list
+            ClearAllWindows();
         }
         else
             PauseWindow.onPauseMenuRequested?.Invoke();
