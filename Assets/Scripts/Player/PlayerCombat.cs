@@ -46,7 +46,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (manaComponent.HasAmount(totalManaCost))
         {
-            SpellCaster.OnItemSpellCastRequested?.Invoke(castOrigin.position + castOrigin.forward, castOrigin.forward, spell);
+            SpellCaster.OnItemSpellCastRequested?.Invoke(GetCastOrigin(), GetCastForward(), spell);
 
             manaComponent.TakeFromResource(totalManaCost);
         }
@@ -77,6 +77,26 @@ public class PlayerCombat : MonoBehaviour
             case PlayerResources.Mana:
                 manaComponent.ReplenishResource(resourceChangingItemData.amount);
                 break;
+        }
+    }
+
+    private Vector3 GetCastOrigin()
+    {
+        if (CameraController.Instance.ActiveViewMode == CameraController.ViewMode.TopDown)
+            return castOrigin.position;
+        else
+        {
+            return transform.position + Vector3.up + CameraController.Instance.transform.forward;
+        }
+    }
+
+    private Vector3 GetCastForward()
+    {
+        if (CameraController.Instance.ActiveViewMode == CameraController.ViewMode.TopDown)
+            return castOrigin.forward;
+        else
+        {
+            return CameraController.Instance.transform.forward;
         }
     }
 

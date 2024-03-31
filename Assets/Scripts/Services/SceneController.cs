@@ -28,7 +28,7 @@ public class SceneController : Singleton<SceneController>
 
     public Scene ActiveScene { get; private set; }
 
-    private void Awake()
+    private void Start()
     {
         LoadScene(primaryScene);
     }
@@ -42,17 +42,6 @@ public class SceneController : Singleton<SceneController>
         primaryScene = scene;
 
         LoadScene(scene);
-    }
-
-    public void SafeEnterPlay()
-    {
-        List<Scene> allScenes = Enum.GetValues(typeof(Scene)).Cast<Scene>().ToList();
-
-        allScenes.Remove(Scene.ServicesLayer);
-
-        UnloadSceneListEditor(allScenes);
-
-        EditorApplication.EnterPlaymode();
     }
 #endif
 

@@ -38,10 +38,10 @@ public class ModalWindow : MonoBehaviour
 
     public void Hide()
     {
-        if (!shown)
-            return;
-
         ModalWindowManager.RemoveWindowFromQueue(this);
+
+        if (!shown || cg == null)
+            return;
 
         cg.alpha = 0f;
         cg.interactable = cg.blocksRaycasts = false;

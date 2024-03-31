@@ -29,9 +29,5 @@ public class SceneControllerEditor : Editor
 
         GUILayout.EndHorizontal();
         GUILayout.BeginVertical();
-
-        if (GUILayout.Button("Safe Play"))
-            sceneController.SafeEnterPlay();
-
     }
 }

@@ -21,7 +21,7 @@ public class Interactor : MonoBehaviour
 
     private void TryInteract()
     {
-        foreach (Collider coll in Physics.OverlapSphere(interactionPoint.position, interactionPointRadius, interactionLayer))
+        foreach (Collider coll in Physics.OverlapSphere(GetInteractionOrigin(), interactionPointRadius, interactionLayer))
         {
             if (coll.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
@@ -30,6 +30,16 @@ public class Interactor : MonoBehaviour
                 if (isSuccessful)
                     break;
             }
+        }
+    }
+
+    private Vector3 GetInteractionOrigin()
+    {
+        if (CameraController.Instance.ActiveViewMode == CameraController.ViewMode.TopDown)
+            return interactionPoint.position;
+        else
+        {
+            return transform.position + Vector3.up + CameraController.Instance.transform.forward;
         }
     }
 

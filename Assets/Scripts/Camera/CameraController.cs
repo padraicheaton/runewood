@@ -12,6 +12,8 @@ public class CameraController : Singleton<CameraController>
     }
     private ViewMode currentViewMode;
 
+    public ViewMode ActiveViewMode => currentViewMode;
+
     [Header("References")]
     [SerializeField] private Transform player;
 
@@ -91,7 +93,7 @@ public class CameraController : Singleton<CameraController>
 
         // UI mode
         else
-            return player.position + player.forward * 2f + Vector3.up;
+            return player.position + Vector3.up - transform.forward;
     }
 
     private Vector3 GetOverTheShoulderTargetPosition()
