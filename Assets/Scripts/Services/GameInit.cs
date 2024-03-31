@@ -4,9 +4,6 @@ public class GameInit : MonoBehaviour
 {
     private void OnEnable()
     {
-        // Refresh the item database
-        ItemManager.GetDatabase().SetItemIDs();
-
         InputProvider.OnEnable();
         ModalWindowManager.Init();
     }
@@ -19,5 +16,8 @@ public class GameInit : MonoBehaviour
     private void Start()
     {
         SaveGameManager.TryLoadData();
+
+        // Refresh the item database
+        ItemManager.GetDatabase().SetItemIDs();
     }
 }

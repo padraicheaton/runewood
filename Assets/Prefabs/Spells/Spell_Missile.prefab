@@ -19539,4 +19539,4 @@ MonoBehaviour:
   earthParticleSystem: {fileID: 4007511750339414826}
   airParticleSystem: {fileID: 1063208690135076943}
   baseDamage: 5
-  acceleration: 2
+  acceleration: 5
