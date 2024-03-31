@@ -36,7 +36,7 @@ public class Spell_Missile : Spell
 
     protected override void FireDetonate()
     {
-        DealDamageInArea(baseDamage, transform.position, 1f);
+
     }
 
     protected override void WaterDetonate()
@@ -56,6 +56,10 @@ public class Spell_Missile : Spell
 
     protected override void OnDetonationFinish()
     {
+        // Dealing damage in here as it does the same thing no matter the element
+        // For this spell type, element just influences the damage matchup
+        DealDamageInArea(baseDamage, transform.position, 1f);
+
         SpellCaster.OnSpellCastRequested?.Invoke(transform.position, -transform.forward, element, actions);
 
         Destroy(gameObject);

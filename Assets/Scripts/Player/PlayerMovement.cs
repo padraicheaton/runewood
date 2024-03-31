@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Animator anim;
+    [SerializeField] private Transform visualsTransform;
     [SerializeField] private ParticleSystem sprintDustFX;
     [SerializeField] private ParticleSystem jumpDustFX;
 
@@ -48,9 +49,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // Calculate desired world direction from movement input
-        Vector2 input = InputProvider.MovementInput;
-
-        transformedInputDirection = new Vector3(input.x, 0f, input.y);
+        transformedInputDirection = CalculateDesiredWorldDirection(InputProvider.MovementInput);
 
         if (transformedInputDirection.magnitude > 1f)
             transformedInputDirection.Normalize();
@@ -58,6 +57,16 @@ public class PlayerMovement : MonoBehaviour
         HandleAnimations();
 
         motor.drag = IsGrounded() ? groundedDrag : airDrag;
+    }
+
+    private Vector3 CalculateDesiredWorldDirection(Vector2 input)
+    {
+        Transform cam = CameraController.Instance.transform;
+
+        Vector3 direction = cam.right * input.x + cam.forward * input.y;
+        direction.y = 0f;
+
+        return direction.normalized;
     }
 
     private void FixedUpdate()
@@ -75,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Rotate towards input direction
         if (transformedInputDirection.magnitude > 0f)
-            transform.forward = Vector3.Slerp(transform.forward, transformedInputDirection, Time.deltaTime * turnSpeed);
+            visualsTransform.forward = Vector3.Slerp(visualsTransform.forward, transformedInputDirection, Time.deltaTime * turnSpeed);
 
         anim.SetFloat("Speed", transformedInputDirection.magnitude);
         anim.SetBool("isSprinting?", InputProvider.SprintPressed);

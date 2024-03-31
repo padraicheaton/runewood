@@ -37,6 +37,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""e386cbfa-6b16-4c1f-ba45-f905c2d65be2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""a82ff282-5c77-498d-98a6-4d63dd4b6b99"",
@@ -338,6 +347,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""UseSlot5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42350330-6a4f-4375-b742-2fbe3bebfda8"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -966,6 +986,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // OnFoot
         m_OnFoot = asset.FindActionMap("OnFoot", throwIfNotFound: true);
         m_OnFoot_Movement = m_OnFoot.FindAction("Movement", throwIfNotFound: true);
+        m_OnFoot_Look = m_OnFoot.FindAction("Look", throwIfNotFound: true);
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
         m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
         m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
@@ -1053,6 +1074,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_OnFoot;
     private List<IOnFootActions> m_OnFootActionsCallbackInterfaces = new List<IOnFootActions>();
     private readonly InputAction m_OnFoot_Movement;
+    private readonly InputAction m_OnFoot_Look;
     private readonly InputAction m_OnFoot_Sprint;
     private readonly InputAction m_OnFoot_Interact;
     private readonly InputAction m_OnFoot_Jump;
@@ -1066,6 +1088,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         private @PlayerInput m_Wrapper;
         public OnFootActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_OnFoot_Movement;
+        public InputAction @Look => m_Wrapper.m_OnFoot_Look;
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
         public InputAction @Interact => m_Wrapper.m_OnFoot_Interact;
         public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
@@ -1086,6 +1109,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
@@ -1117,6 +1143,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
@@ -1341,6 +1370,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IOnFootActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);

@@ -85,6 +85,7 @@ public static class InputProvider
 
     // Public Methods
     public static Vector2 MovementInput => onFoot.Movement.ReadValue<Vector2>();
+    public static Vector2 LookInput => onFoot.Look.ReadValue<Vector2>();
     public static bool SprintPressed => onFoot.Sprint.IsPressed();
     public static bool SplitItemPressed => uiActions.SplitItem.IsPressed();
 
